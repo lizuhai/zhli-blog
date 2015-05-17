@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 使用简单主题 -->
+    <constant name="struts.ui.theme" value="simple"></constant>
+    <!-- 开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 允许静态方法访问 -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    
+    <package name="default" namespace="/" extends="struts-default">
+	    <!-- 注册 action -->
+    	<action name="RegAction_*" class="regAction" method="{1}">
+    		<result name="regPage">/register.jsp</result>
+    		<result>/index.jsp</result>
+    		<result name="input">/register.jsp</result>
+    	</action>
+    	
+    	<action name="LoginAction_*" class="loginAction" method="{1}">
+    		<result name="loginPage">/login.jsp</result>
+    		<result type="redirect">/index.jsp</result>
+    		<result name="input">/login.jsp</result>
+    	</action>
+    	
+    	<action name="BlogAction_*" class="blogAction" method="{1}">
+    		<result name="blogPage">/blog.jsp</result>
+    		<result>/index.jsp</result>
+    		<result name="input">/error.jsp</result>
+    		<result name="detailPage">/blog_detail.jsp</result>
+    		<result name="saveComment" type="redirect">BlogAction_toBlogPage</result>
+    		<result name="saveBlog" type="redirect">BlogAction_toBlogPage</result>
+    		<result name="updatePraisedNum" type="redirect">BlogAction_toBlogPage</result>
+    		<result name="editBlogPage">/editBlog.jsp</result>
+    		<result name="saveEditedBlog" type="redirect">BlogAction_toBlogPage</result>
+    		<result name="updateBlog" type="redirect">BlogAction_toBlogPage</result>
+    	</action>
+    	
+    	<action name="MessageAction_*" class="messageAction" method="{1}">
+    		<result name="contact">/contact.jsp</result>
+    		<result>/index.jsp</result>
+    		<result name="input">/error.jsp</result>
+    		<result name="toMessageListPage">/messages.jsp</result>
+    		<result name="delete" type="redirect">MessageAction_toMessageListPage</result>
+    	</action>
+    </package>
+</struts>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.zhli.openbook.model.User" table="OPENBOOK_USERS">
+    	<!-- 联合主键 -->
+    	<!-- <composite-id>
+    		<key-property name="email" column="EMAIL" type="java.lang.String" length="30"></key-property>
+    		<key-property name="telephoneNumber" column="TELEPHONE_NUMBER" type="java.lang.String" length="20"></key-property>
+    	</composite-id> -->
+    
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="email" type="string">
+            <column name="EMAIL" length="50"/>
+        </property>
+        <property name="name" type="string">
+            <column name="NAME" length="30"/>
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="32"/>
+        </property>
+        <property name="regdate" type="timestamp" update="false">
+            <column name="REGDATE" />
+        </property>
+    </class>
+</hibernate-mapping>

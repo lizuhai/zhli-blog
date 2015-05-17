@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.zhli.openbook.model">
+    <class name="Blog" table="OPENBOOK_BLOGS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="writingDate" type="timestamp" update="false">
+            <column name="WRITING_DATE" />
+        </property>
+        <property name="lastModifiedTime" type="timestamp">
+            <column name="LAST_MODIFIED_TIME" />
+        </property>
+        <property name="praisedNumber" type="java.lang.Integer">
+            <column name="PRAISED_NUMBER" />
+        </property>
+        <property name="viewedTimes" type="java.lang.Integer">
+            <column name="VIEWED_TIMES" />
+        </property>
+        <property name="tag" type="java.lang.String">
+            <column name="TAG" />
+        </property>
+        <property name="category" type="java.lang.String">
+            <column name="CATEGORY" />
+        </property>
+        <property name="content" type="text">
+            <column name="CONTENT" length="16777216"/>
+        </property>
+        
+        <many-to-one name="author" class="User" column="USER_ID" lazy="false"></many-to-one>
+        
+        <set name="comments" lazy="false">
+        	<key column="BLOG_ID"></key>
+        	<one-to-many class="Comment"/>
+        </set>
+    </class>
+</hibernate-mapping>
